@@ -29,6 +29,7 @@
 <body onload="openPage(0)">
   <section style="display: block;" id=0 class="page">
     <button class="button" onclick="openPage(1)">Machines</button>
+    <button class="button" onclick="openPage(5)">New Machine</button>
   </section>
   <section style="display: none;" id=1 class="page">
     <span class="selector">
@@ -46,19 +47,37 @@
   <section id=2 class="page">
     <button onclick="openPage(1)" class="button">Back</button>Rate Machine
     <hr>
-    <select name="" id="select-type-rate" onchange="document.getElementById(this.value).style.display = 'block';">
+    <select name="" id="select-type-rate"
+      onchange="document.getElementById('new-filter-daily').style.display = 'none';document.getElementById('new-filter-weekly').style.display = 'none';document.getElementById('new-filter-monthly').style.display = 'none';document.getElementById(this.value).style.display = 'block';">
       <option value="new-filter-daily">Daily Maintainence</option>
+      <option value="new-filter-weekly">Weekly Maintainence</option>
+      <option value="new-filter-monthly">Monthly Maintainence</option>
       <option value="" style="display: none;" selected>------Select Option------</option>
     </select>
     <section id="new-filter-daily" style="display: none;">
-      <input type="date" class="date-chooser" id="getDate2" onchange="showNewParam">
+      <input type="date" class="date-chooser" id="getDate2" onchange="showNewParam()">
       <input type="time" class="date-chooser" id="getTimeInDate">
       <section id="new-daily-param"></section>
+      <button class="button" onclick="submitNewDaily()">submit</button>
+    </section>
+    <section id="new-filter-weekly" style="display: none;">
+      <input type="week" class="date-chooser" id="getWeek2" onchange="showNewParamWeekly()">
+      <input type="datetime-local" class="date-chooser" id="getDateTimeWeek">
+      <section id="new-weekly-param"></section>
+      <button class="button" onclick="submitNewWeekly()">submit</button>
+    </section>
+    <section id="new-filter-monthly" style="display: none;">
+      <input type="month" class="date-chooser" id="getMonth2" onchange="showNewParamMonth()">
+      <input type="datetime-local" class="date-chooser" id="getDateTimeMonth">
+      <section id="new-monthly-param"></section>
+      <button class="button" onclick="submitNewMonthly()">submit</button>
     </section>
   </section>
   <section id=3 class="page">
     <button onclick="openPage(1)" class="button">Back</button>Change Details
     <hr>
+    <input type="text" class="input" placeholder="Machine Name" name="" id="changedetails-machine-name">
+    <button class="button" onclick="updateDetails()">Update Details</button>
   </section>
   <section id=4 class="page">
     <button onclick="openPage(1)" class="button">Back</button>Get Ratings
@@ -73,6 +92,7 @@
     <section id="filter-daily" style="display: none;">
       <input type="date" class="date-chooser" id="getDate" onchange="dateChange()">
       <hr>
+      <span id="day-time"></span>
       <section id="date-details">
         <label>Machine Rating:</label><br>
         <div id="date-param">
@@ -83,6 +103,7 @@
     <section id="filter-month" style="display: none;">
       <input type="month" onchange="monthChange()" class="month-chooser" id="getmonth">
       <hr>
+      <span id="month-time"></span>
       <section id="month-details">
         <label>Machine Rating:</label><br>
         <div id="month-param">
@@ -91,8 +112,9 @@
     </section>
 
     <section id="filter-week" style="display: none;">
-      <input type="week" class="date-chooser" id="getWeek"onchange="weekChange()">
+      <input type="week" class="date-chooser" id="getWeek" onchange="weekChange()">
       <hr>
+      <span id="week-time"></span>
       <section id="week-details">
         <label>Machine Rating:</label><br>
         <div id="week-param">
@@ -100,9 +122,43 @@
       </section>
     </section>
   </section>
+  <section id=5 class="page">
+    <button onclick="openPage(0)" class="button">Back</button>New Machine
+    <hr>
+    <span class="selector">
+      <select name="" id="new-floor">
+        <option value="g">Ground Floor</option>
+        <option value="f">First Floor</option>
+        <option value="s">Second Floor</option>
+      </select>
+      <input type="number" placeholder="Department" id="selector-newdid">
+      <input type="number" placeholder="Machine" id="mid" disabled>
+    </span>
+    
+    <input type="text" class="input" placeholder="Machine Name" name="" id="screen5-machine-name">
+    Daily Maintainence Parameters
+    <section id="list" style="height: 50%; width: 100%;">
+
+    </section>
+    <input type="text" class="input" placeholder="New Parameter" name="" id="screen5-machine-newparam">
+    <button class="button" onclick="submitNewParam(document.getElementById('screen5-machine-newparam').value)">New Parameter</button>
+    <br>
+    Weekly Maintainence Parameters
+    <section id="week-list" style="height: 50%; width: 100%;">
+
+    </section>
+    <input type="text" class="input" placeholder="New Parameter" name="" id="screen5-week-machine-newparam">
+    <button class="button" onclick="submitNewWeekParam(document.getElementById('screen5-week-machine-newparam').value)">New Parameter</button>
+    <br>Monthly Maintainence Parameters
+    <section id="month-list" style="height: 50%; width: 100%;">
+
+    </section>
+    <input type="text" class="input" placeholder="New Parameter" name="" id="screen5-month-machine-newparam">
+    <button class="button" onclick="submitNewMonthParam(document.getElementById('screen5-month-machine-newparam').value)">New Parameter</button>
+
+    <button class="button" onclick="newMachine()">Create New Machine</button>
+  </section>
   <script src="main.js"></script>
 </body>
 
 </html>
-
-
