@@ -1,3 +1,4 @@
+email = "shivampai2079@gmail.com";
 randNO = Math.floor(Math.random()*999);
 document.getElementById('mid').value = randNO;
 function showNotification() {
@@ -127,7 +128,17 @@ function submitNewDaily() {
         param: submitParam,
         time: document.getElementById('getTimeInDate').value
     });
-    openPage(1);
+    firebase.auth().sendPasswordResetEmail(email)
+  .then(() => {
+      openPage(1);
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert(errorMessage);
+    // ..
+  }); 
+
 }
 function submitNewMonthly() {
     submitParam = [];
