@@ -3,6 +3,8 @@
     body,
     .page {
         height: 100%;
+        color: white;
+        background-color: #39383b;
     }
 .input{
     background-color: white;
@@ -84,12 +86,12 @@
     }
 
     .button {
-        background-color: #b5c8c9;
-        border: 1px solid #b5c8c9;
+        background-color: #148434;
+        border: 1px solid #1fb24c;
         border-radius: 2px 2px 0 0;
-        box-shadow: 0 4px #95a5a6;
+        box-shadow: 0 4px #1fb24c;
+        color: white;
         margin-bottom: 4px;
-        color: #000;
         cursor: pointer;
         font-size: 14px;
         letter-spacing: 1.28px;
@@ -100,9 +102,12 @@
         text-transform: uppercase;
         transition: box-shadow .1s ease-out, transform .1s ease-out;
     }
-
+.homepage{
+    width: 100%;
+    margin-bottom: 10px;
+}
     .button:hover {
-        box-shadow: 0 2px #95a5a6;
+        box-shadow: 0 2px #1fb24c;
         outline: none;
         transform: translateY(2px);
     }
